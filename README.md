@@ -1,0 +1,2 @@
+# DotXmonad
+xmonad setting 
