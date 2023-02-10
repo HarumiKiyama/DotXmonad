@@ -1,0 +1,34 @@
+Config {
+       font = "xft:Zekton:size=13:bold:antialias=true"
+       , additionalFonts = [ "xft:FontAwesome:size=11" ]
+       , allDesktops = True
+       , bgColor = "#282c34"
+       , fgColor = "#bbc2cf"
+       , position = TopW L 100
+       , commands = [ Run Cpu [ "--template", "<fc=#a9a1e1><fn=1></fn></fc> <total>%"
+                              , "--Low","3"
+                              , "--High","50"
+                              , "--low","#bbc2cf"
+                              , "--normal","#bbc2cf"
+                              , "--high","#fb4934"] 50
+                    , Run Memory ["-t","<fc=#51afef><fn=1></fn></fc> <usedratio>%"
+                                 ,"-H","80"
+                                 ,"-L","10"
+                                 ,"-l","#bbc2cf"
+                                 ,"-n","#bbc2cf"
+                                 ,"-h","#fb4934"] 50
+                    , Run Date "<fc=#ECBE7B><fn=1></fn></fc> %Y-%m-%d %a %H:%M:%S" "date" 8
+                    , Run DynNetwork ["-t","<fc=#4db5bd><fn=1></fn></fc> <rx>KB, <fc=#c678dd><fn=1></fn></fc> <tx>KB"
+                                     ,"-H","200"
+                                     ,"-L","10"
+                                     ,"-h","#bbc2cf"
+                                     ,"-l","#bbc2cf"
+                                     ,"-n","#bbc2cf"] 10
+		    , Run Weather "ZSHC" ["--template", "<skyCondition> <fc=#4682B4><tempC></fc>°C <fc=#4682B4><rh></fc>%"] 1800
+		    , Run Com "fcitx5-remote" ["-n"] "fcitx5info" 10
+		    , Run StdinReader
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = " %StdinReader% | }{ %ZSHC% | %cpu% | %memory% | %dynnetwork% | %fcitx5info% | %date%" 
+       }
